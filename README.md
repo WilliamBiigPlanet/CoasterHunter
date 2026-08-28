@@ -8,6 +8,7 @@ ride. Peak g, airtime, inversions and roughness, captured on the wrist while the
 phone sits in the locker.
 
 ```
+setup.sh          First-run setup after cloning
 pipeline/         Builds the seed database from free, openly-licensed sources
 CoasterHunter/    The iOS and watchOS app
 blueprint/        Product blueprint — pricing, feature set, design language
@@ -32,14 +33,21 @@ against the macOS SDK that Command Line Tools ships.
 
 ## Getting to a running app
 
+After cloning, run the setup script. It checks your tooling, builds the seed
+database and runs the tests:
+
 ```bash
-# 1. Free ~30 GB, then install Xcode 15.2 (the ceiling on macOS 13 Ventura)
-# 2. Generate and open the project
+./setup.sh
+```
+
+Then generate and open the Xcode project:
+
+```bash
 brew install xcodegen
 cd CoasterHunter && xcodegen generate && open CoasterHunter.xcodeproj
 ```
 
-Deployment target is iOS 17 / watchOS 10, chosen so no macOS upgrade is needed.
+Deployment target is iOS 17 / watchOS 10.
 
 ## Verification
 
