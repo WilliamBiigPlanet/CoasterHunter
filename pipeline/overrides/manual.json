@@ -1,0 +1,4 @@
+{
+  "_comment": "Hand-resolved matches the automatic matcher will not call on its own. Key is the Wikipedia article title (or Wikidata QID); value is the themeparks.wiki attraction id, or null to assert that no match exists. Populated from the review queue in out/coverage.md.",
+  "matches": {}
+}

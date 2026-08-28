@@ -1,0 +1,77 @@
+{
+  "identifier" : "coasterhunter",
+  "nonRenewingSubscriptions" : [
+    {
+      "displayPrice" : "4.99",
+      "familyShareable" : false,
+      "internalID" : "CH0001",
+      "localizations" : [
+        {
+          "description" : "Everything in Pro for three days. No subscription, nothing to cancel. Starts when you tap it or when you check into a park.",
+          "displayName" : "3-Day Park Pass",
+          "locale" : "en_GB"
+        }
+      ],
+      "productID" : "com.coasterhunter.pass.3day",
+      "referenceName" : "3-Day Park Pass",
+      "type" : "NonRenewingSubscription"
+    }
+  ],
+  "products" : [
+    {
+      "displayPrice" : "54.99",
+      "familyShareable" : false,
+      "internalID" : "CH0003",
+      "localizations" : [
+        {
+          "description" : "CoasterHunter Pro, kept forever. One payment.",
+          "displayName" : "Pro — Lifetime",
+          "locale" : "en_GB"
+        }
+      ],
+      "productID" : "com.coasterhunter.pro.lifetime",
+      "referenceName" : "Pro Lifetime",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : {
+    "_askToBuyEnabled" : false,
+    "_storefront" : "GBR",
+    "_storeKitErrors" : []
+  },
+  "subscriptionGroups" : [
+    {
+      "id" : "CHGROUP1",
+      "localizations" : [],
+      "name" : "CoasterHunter Pro",
+      "subscriptions" : [
+        {
+          "adHocOffers" : [],
+          "codeOffers" : [],
+          "displayPrice" : "19.99",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "CH0002",
+          "introductoryOffer" : {
+            "internalID" : "CHINTRO1",
+            "paymentMode" : "free",
+            "subscriptionPeriod" : "P2W"
+          },
+          "localizations" : [
+            {
+              "description" : "Unlimited ride tracking, your full RideDNA archive, roughness and row telemetry, your ranked Top 100, offline park packs.",
+              "displayName" : "Pro — One Year",
+              "locale" : "en_GB"
+            }
+          ],
+          "productID" : "com.coasterhunter.pro.annual",
+          "recurringSubscriptionPeriod" : "P1Y",
+          "referenceName" : "Pro Annual",
+          "subscriptionGroupID" : "CHGROUP1",
+          "type" : "RecurringSubscription"
+        }
+      ]
+    }
+  ],
+  "version" : { "major" : 3, "minor" : 0 }
+}

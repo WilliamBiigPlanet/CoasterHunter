@@ -1,0 +1,16 @@
+{
+  "name": "coasterhunter-pipeline",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Builds the CoasterHunter seed database from free, openly-licensed sources.",
+  "engines": {
+    "node": ">=22.5"
+  },
+  "scripts": {
+    "build": "node build.mjs",
+    "build:fresh": "node build.mjs --no-cache",
+    "coverage": "cat out/coverage.md",
+    "test": "node --test test.mjs"
+  }
+}

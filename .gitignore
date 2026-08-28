@@ -1,0 +1,30 @@
+# macOS
+.DS_Store
+
+# Build output
+.build/
+DerivedData/
+*.xcodeproj
+*.xcworkspace
+!*.xcworkspace/contents.xcworkspacedata
+
+# Pipeline
+pipeline/.cache/
+pipeline/out/
+
+# The seed database is generated, 7 MB, and changes on every pipeline run —
+# putting it in git history would bloat every clone forever. Rebuild it with:
+#   cd pipeline && npm run build && ./copy-seed.sh
+CoasterHunter/App/Resources/coasterhunter-seed.sqlite
+
+# Dependencies
+node_modules/
+
+# Design reference — 65 UI shots by other designers, kept as private inspiration.
+# The repo is public, so these stay local: republishing someone else's design
+# work is not a risk worth taking. Delete this line to include them.
+Design Style Reference/
+
+# Local secrets
+.env
+.env.local
