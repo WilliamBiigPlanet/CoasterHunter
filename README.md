@@ -8,7 +8,8 @@ ride. Peak g, airtime, inversions and roughness, captured on the wrist while the
 phone sits in the locker.
 
 ```
-setup.sh          First-run setup after cloning
+setup.command     Double-click this after cloning
+setup.sh          What setup.command runs
 pipeline/         Builds the seed database from free, openly-licensed sources
 CoasterHunter/    The iOS and watchOS app
 blueprint/        Product blueprint — pricing, feature set, design language
@@ -33,12 +34,14 @@ against the macOS SDK that Command Line Tools ships.
 
 ## Getting to a running app
 
-After cloning, run the setup script. It checks your tooling, builds the seed
-database and runs the tests:
+After cloning, **double-click `setup.command`** in Finder — it opens Terminal
+and runs the setup for you. Or from a terminal:
 
 ```bash
 ./setup.sh
 ```
+
+Either way it checks your tooling, builds the seed database and runs the tests.
 
 Then generate and open the Xcode project:
 
