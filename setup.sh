@@ -29,10 +29,24 @@ if [ "$NODE_MAJOR" -lt 22 ]; then
 fi
 ok "Node $(node -v)"
 
-if command -v swift >/dev/null; then
-  ok "Swift $(swift --version 2>&1 | head -1 | sed 's/.*version \([0-9.]*\).*/\1/')"
-else
+# Checking the binary exists is not enough: Xcode ships a `swift` that refuses
+# to run a single line until its licence has been accepted, and reporting that
+# as a tick sends people hunting for a problem that isn't there.
+SWIFT_CHECK=$(swift --version 2>&1 || true)
+if ! command -v swift >/dev/null; then
   warn "Swift not found — install Xcode, or Command Line Tools with: xcode-select --install"
+  SWIFT_OK=no
+elif printf '%s' "$SWIFT_CHECK" | grep -qi "license"; then
+  warn "Xcode's licence has not been accepted yet, so Swift cannot compile."
+  warn "    Open Xcode from Applications and click Agree, then run this again."
+  SWIFT_OK=no
+elif printf '%s' "$SWIFT_CHECK" | grep -qi "swift version"; then
+  ok "Swift $(printf '%s' "$SWIFT_CHECK" | sed -n 's/.*[Ss]wift version \([0-9.]*\).*/\1/p' | head -1)"
+  SWIFT_OK=yes
+else
+  warn "Swift is installed but not working:"
+  printf '      %s\n' "$SWIFT_CHECK" | head -3
+  SWIFT_OK=no
 fi
 
 if command -v xcodegen >/dev/null; then
@@ -54,9 +68,13 @@ step "Running the tests"
 ( cd pipeline && node --test test.mjs >/dev/null 2>&1 && ok "pipeline: 19 tests passed" ) \
   || warn "pipeline tests failed — run 'cd pipeline && node --test test.mjs' to see why"
 
-( cd CoasterHunter/Packages/CoasterHunterCore && ./Tools/run-tests.sh >/dev/null 2>&1 \
-  && ok "core: 61 tests passed" ) \
-  || warn "core tests failed — run CoasterHunter/Packages/CoasterHunterCore/Tools/run-tests.sh to see why"
+if [ "${SWIFT_OK:-no}" = "yes" ]; then
+  ( cd CoasterHunter/Packages/CoasterHunterCore && ./Tools/run-tests.sh >/dev/null 2>&1 \
+    && ok "core: 61 tests passed" ) \
+    || warn "core tests failed — run CoasterHunter/Packages/CoasterHunterCore/Tools/run-tests.sh to see why"
+else
+  warn "core tests skipped — Swift is not usable yet (see above)"
+fi
 
 step "Next"
 if command -v xcodegen >/dev/null; then
